@@ -1,13 +1,16 @@
 import java.awt.Graphics;
 
 public class BlockManager {
+
+
+
     public BlockManager(TetrisGrid grid) {
         tgrid = grid;
         piece = null;
     }
 
     public void startSpawning() {
-        Timer mainLoopTimer = new Timer();
+        mainLoopTimer = new Timer();
         TimerTask mainLoopTask = new TimerTask() {
             public void run() {
                 if (dim != null) {
@@ -22,12 +25,18 @@ public class BlockManager {
     private void timeStep() {
         if (piece == null) {
             piece = new TetrisPiece();
-
+		// no addable piece
         }
+        else
+        {
+
+
+		}
     }
 
     private static final int updateInterval = 2;
 
+	private Timer mainLoopTimer;
     private TetrisGrid tgrid;
     private TetrisPiece piece;
 }

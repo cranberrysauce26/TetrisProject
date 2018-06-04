@@ -25,6 +25,19 @@ public class TetrisPiece {
         draw();
     }
 
+    public void rotateClockwise() {
+        undraw();
+        int[][] old = new int[4][4];
+        for (int i = 0; i < 4; ++i)
+            for (int j = 0; j < 4; ++j) old[i][j] = piece[i][j];
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+               piece[i][j] = old[3-j][i]; 
+            }
+        }
+        draw();
+    }
+
     private int curRow, curCol;
     private TetrisGrid tgrid;
     private int[][] piece;
@@ -90,5 +103,8 @@ public class TetrisPiece {
                 {0, 0, 0, 0}
             };
         }
+
+        int rot = rnd.nextInt(3);
+        while (rot-- != 0) rotateClockwise();
     }
 }

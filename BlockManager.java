@@ -1,42 +1,49 @@
 import java.awt.Graphics;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class BlockManager {
 
-
-
-    public BlockManager(TetrisGrid grid) {
+    public BlockManager(TetrisPanel p, TetrisGrid grid) {
+        System.out.printf("in blockmanager constructor\n");
         tgrid = grid;
         piece = null;
+        tpanel = p;
     }
 
     public void startSpawning() {
-        mainLoopTimer = new Timer();
+        System.out.printf("SPAWNING IN BLOCK MANAGER\n");
+        Timer mainLoopTimer = new Timer();
+        System.out.printf("made a new timer\n");
         TimerTask mainLoopTask = new TimerTask() {
             public void run() {
-                if (dim != null) {
-                    // go forward in time
-                    timeStep();
-                }
+                timeStep();
             }
         };
-        mainLoopTimer.scheduleAtFixedRate(mainLoopTask, 0, updateInterval);
+        System.out.printf("about to set the schedle\n");
+        mainLoopTimer.scheduleAtFixedRate(mainLoopTask, updateDelay, updateInterval);
+        System.out.printf("finished setting the schedule\n");
     }
 
     private void timeStep() {
         if (piece == null) {
-            piece = new TetrisPiece();
-		// no addable piece
+            piece = new TetrisPiece(tgrid);
+            piece.draw();
+        } else {
+            if (piece.canMoveDown()) {
+                piece.moveDown();
+            } else {
+                piece = null;
+            }
         }
-        else
-        {
-
-
-		}
+        tgrid.finalize();
     }
 
-    private static final int updateInterval = 2;
+    private static final long updateInterval = 1000;
+    private static final long updateDelay = 500;
 
-	private Timer mainLoopTimer;
+	// private Timer mainLoopTimer;
     private TetrisGrid tgrid;
     private TetrisPiece piece;
+    private TetrisPanel tpanel;
 }

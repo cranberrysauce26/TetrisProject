@@ -23,10 +23,11 @@ public class BlockManager {
     private void timeStep() {
         if (piece == null) {
             piece = new TetrisPiece(tgrid);
-            // TODO: CHECK FOR DEATH
         } else {
             if (piece.canMoveDown()) {
                 piece.moveDown();
+            } else if (!piece.isWithinGrid()) {
+                tpanel.die();
             } else {
                 piece = new TetrisPiece(tgrid);
             }

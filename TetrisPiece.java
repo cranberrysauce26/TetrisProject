@@ -7,6 +7,15 @@ public class TetrisPiece {
         draw();
     }
 
+    public boolean isWithinGrid() {
+        for (int r = 0; r < 4; ++r) {
+            for (int c = 0; c < 4; ++c) {
+                if (piece[r][c]!=0 && !tgrid.isWithinGrid(curRow+r, curCol+c)) return false;
+            }
+        }
+        return true;
+    }
+
     public boolean canMoveDown() {
         for (int c = 0; c < 3; ++c) {
             int r;

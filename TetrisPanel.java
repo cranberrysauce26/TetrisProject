@@ -25,8 +25,9 @@ public class TetrisPanel extends JPanel {
         g.drawImage(osi, 0, 0, this);
     }
 
-    public void Die() {
-
+    public void die() {
+        System.out.println("I'm dead\n");
+        System.exit(0);
     }
 
     private void updateImage() {

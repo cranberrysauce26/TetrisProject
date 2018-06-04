@@ -11,13 +11,17 @@ public class BlockManager {
     }
 
     public void startSpawning() {
-        Timer mainLoopTimer = new Timer();
         TimerTask mainLoopTask = new TimerTask() {
             public void run() {
                 timeStep();
             }
         };
         mainLoopTimer.scheduleAtFixedRate(mainLoopTask, updateDelay, updateInterval);
+    }
+
+    public void stopSpawning() {
+        mainLoopTimer.cancel();
+        mainLoopTimer.purge();
     }
 
     private void timeStep() {
@@ -42,4 +46,5 @@ public class BlockManager {
     private TetrisGrid tgrid;
     private TetrisPiece piece;
     private TetrisPanel tpanel;
+    private Timer mainLoopTimer = new Timer();
 }

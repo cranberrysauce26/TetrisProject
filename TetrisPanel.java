@@ -10,10 +10,6 @@ public class TetrisPanel extends JPanel {
     public TetrisPanel() {
         grid = new TetrisGrid(this, 7, 4);
         blockManager = new BlockManager(this, grid);
-        startSpawning();
-    }
-
-    private void startSpawning() {
         blockManager.startSpawning();
     }
 
@@ -27,7 +23,10 @@ public class TetrisPanel extends JPanel {
 
     public void die() {
         System.out.println("I'm dead\n");
-        System.exit(0);
+        blockManager.stopSpawning();
+        grid = new TetrisGrid(this, 7, 4);
+        blockManager = new BlockManager(this, grid);
+        blockManager.startSpawning();
     }
 
     private void updateImage() {

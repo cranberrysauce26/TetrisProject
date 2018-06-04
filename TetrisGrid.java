@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Random;
 
 public class TetrisGrid {
 
@@ -46,13 +47,17 @@ public class TetrisGrid {
     }
 
     public int getCols() {
-        System.out.printf("in getcols returning %d\n", ncols);
         return ncols;
+    }
+
+    public int randomColour() {
+        Random rnd = new Random();
+        return 1+rnd.nextInt(cellColours.length-1);
     }
 
     private TetrisPanel panel;
     private int[][] grid;
     private int nrows;
     private int ncols;
-    private static final Color[] cellColours = new Color[]{Color.BLACK, Color.BLUE};
+    private static final Color[] cellColours = new Color[]{Color.BLACK, Color.BLUE, Color.RED, Color.YELLOW};
 }

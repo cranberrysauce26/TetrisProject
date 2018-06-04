@@ -49,6 +49,7 @@ public class TetrisPiece {
 
         Random rnd = new Random();
         int type = rnd.nextInt(5);
+        int c = tgrid.randomColour();
 
         curRow = 0;
         curCol = rnd.nextInt(tgrid.getCols()-3);
@@ -57,35 +58,35 @@ public class TetrisPiece {
             piece = new int[][] {
                 {0, 0, 0, 0},
                 {0, 0, 0, 0},
-                {1, 1, 1, 1},
+                {c, c, c, c},
                 {0, 0, 0, 0}
             };
         } else if (type==1) {
              piece = new int[][] {
                 {0, 0, 0, 0},
-                {0, 0, 1, 0},
-                {1, 1, 1, 0},
+                {0, 0, c, 0},
+                {c, c, c, 0},
                 {0, 0, 0, 0}
             };
         } else if (type==2) {
              piece = new int[][] {
                 {0, 0, 0, 0},
-                {0, 1, 0, 0},
-                {1, 1, 1, 0},
+                {0, c, 0, 0},
+                {c, c, c, 0},
                 {0, 0, 0, 0}
             };
         } else if (type==3) {
              piece = new int[][] {
                 {0, 0, 0, 0},
-                {0, 1, 1, 0},
-                {1, 1, 0, 0},
+                {0, c, c, 0},
+                {c, c, 0, 0},
                 {0, 0, 0, 0}
             };
         } else {
              piece = new int[][] {
                 {0, 0, 0, 0},
-                {0, 1, 1, 0},
-                {0, 1, 1, 0},
+                {0, c, c, 0},
+                {0, c, c, 0},
                 {0, 0, 0, 0}
             };
         }

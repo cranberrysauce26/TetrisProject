@@ -29,8 +29,8 @@ public class TetrisGrid {
         }
     }
 
-    public boolean isWithinGrid(int r, int c) {
-        return 3 < r && r < nrows+4 && 0 < c && c < ncols;
+    public boolean isTopRow(int r) {
+        return r == 4;
     }
 
     public boolean empty(int r, int c) {

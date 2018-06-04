@@ -8,7 +8,7 @@ import java.awt.image.*;
 public class TetrisPanel extends JPanel {
 
     public TetrisPanel() {
-        grid = new TetrisGrid(this, 10, 10);
+        grid = new TetrisGrid(this, 6, 7);
         blockManager = new BlockManager(this, grid);
         startSpawning();
     }

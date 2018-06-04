@@ -2,21 +2,24 @@ import java.util.Random;
 public class TetrisPiece {
 
     public TetrisPiece(TetrisGrid grid) {
+        System.out.printf("making a new tetris piece\n");
         tgrid = grid;
         initialize();
         draw();
     }
 
-    public boolean isWithinGrid() {
+    public boolean occupiesTop() {
+        System.out.printf("checking occupies the top\n");
         for (int r = 0; r < 4; ++r) {
             for (int c = 0; c < 4; ++c) {
-                if (piece[r][c]!=0 && !tgrid.isWithinGrid(curRow+r, curCol+c)) return false;
+                if (piece[r][c]!=0 && tgrid.isTopRow(curRow+r)) return true;
             }
         }
-        return true;
+        return false;
     }
 
     public boolean canMoveDown() {
+        System.out.printf("checking if can move downn\n");
         for (int c = 0; c < 3; ++c) {
             int r;
             for (r=3; r>=0; --r) if (piece[r][c]!=0) break;
@@ -29,6 +32,7 @@ public class TetrisPiece {
     }
 
     public void moveDown() {
+        System.out.printf("moving down\n");
         undraw();
         ++curRow;
         draw();

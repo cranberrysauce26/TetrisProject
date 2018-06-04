@@ -26,7 +26,7 @@ public class BlockManager {
         } else {
             if (piece.canMoveDown()) {
                 piece.moveDown();
-            } else if (!piece.isWithinGrid()) {
+            } else if (piece.occupiesTop()) {
                 tpanel.die();
             } else {
                 piece = new TetrisPiece(tgrid);

@@ -29,6 +29,26 @@ public class TetrisGrid {
         }
     }
 
+    public void clearFilledRows() {
+        int[][] old = new int[nrows+4][ncols];
+        for (int i = 0; i < grid.length; ++i)
+            for (int j = 0; j < grid[i].length; ++j)
+                old[i][j] = grid[i][j];
+        
+        int target = nrows+3;
+        for (int r = nrows+3; r >= 0; --r) {
+            boolean filled = true;
+            for (int c = 0; c < ncols; ++c) {
+                if (old[r][c]==0) filled = false;
+                grid[target][c] = old[r][c];
+            }
+            
+            if (!filled) {
+                --target;
+            }
+        }
+    }
+
     public boolean isTopRow(int r) {
         return r == 4;
     }

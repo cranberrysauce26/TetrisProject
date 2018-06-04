@@ -29,6 +29,7 @@ public class BlockManager {
             } else if (piece.occupiesTop()) {
                 tpanel.die();
             } else {
+                tgrid.clearFilledRows();
                 piece = new TetrisPiece(tgrid);
             }
         }

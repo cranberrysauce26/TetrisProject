@@ -17,9 +17,12 @@ public class TetrisGrid {
         int width = dim.width / ncols;
         int height = dim.height / nrows;
 
-        for (int r = 4; r < nrows+4; ++r) {
+        for (int r = 0; r < nrows; ++r) {
             for (int c = 0; c < ncols; ++c) {
-                g.setColor(cellColours[grid[r][c]]);
+                g.setColor(cellColours[grid[r+4][c]]);
+                // g.setColor(cellColours[1]);
+                g.fillRect(c*width, r*height, width, height);
+                g.setColor(Color.white);
                 g.drawRect(c*width, r*height, width, height);
             }
         }
@@ -43,6 +46,7 @@ public class TetrisGrid {
     }
 
     public int getCols() {
+        System.out.printf("in getcols returning %d\n", ncols);
         return ncols;
     }
 
@@ -50,5 +54,5 @@ public class TetrisGrid {
     private int[][] grid;
     private int nrows;
     private int ncols;
-    private static final Color[] cellColours = new Color[]{Color.WHITE, Color.BLUE};
+    private static final Color[] cellColours = new Color[]{Color.BLACK, Color.BLUE};
 }

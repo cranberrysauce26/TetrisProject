@@ -8,14 +8,12 @@ import java.awt.image.*;
 public class TetrisPanel extends JPanel {
 
     public TetrisPanel() {
-        System.out.printf("in tetris panel constructor\n");
         grid = new TetrisGrid(this, 20, 20);
         blockManager = new BlockManager(this, grid);
         startSpawning();
     }
 
     private void startSpawning() {
-        System.out.printf("SPAWNING in TetrisPanel\n");
         blockManager.startSpawning();
     }
 

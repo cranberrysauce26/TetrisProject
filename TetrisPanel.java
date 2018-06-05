@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.event.KeyListener;
@@ -29,6 +30,11 @@ public class TetrisPanel extends JPanel implements KeyListener {
         init();
     }
 
+    public void addScore(int s) {
+        score += s;
+        repaint();
+    }
+
     // methods of KeyListener
 	public void keyPressed(KeyEvent ke) {
 		int code = ke.getKeyCode();
@@ -38,7 +44,7 @@ public class TetrisPanel extends JPanel implements KeyListener {
 				break;
 			case KeyEvent.VK_RIGHT:
                 pieceManager.moveRight();
-				break; 
+				break;
 			case KeyEvent.VK_LEFT:
 				pieceManager.moveLeft();
 				break;
@@ -60,9 +66,13 @@ public class TetrisPanel extends JPanel implements KeyListener {
 
     private void updateImage() {
         if (grid != null) {
-            grid.display(osg, dim);
+            grid.display(osg, 0, dim.width, dim.height / 10, dim.height);
+            osg.setColor(Color.RED);
+            osg.drawString("Score: "+score, dim.width/2, dim.height / 12);
         }
     }
+
+    private int score;
 
     private TetrisGrid grid;
     private PieceManager pieceManager;

@@ -13,11 +13,11 @@ public class TetrisGrid {
         grid = new int[nrows+4][ncols];
     }
 
-    public void display(Graphics g, Dimension dim) {
-        int len = Math.min(dim.width / ncols, dim.height / nrows);
+    public void display(Graphics g, int lft, int rt, int tp, int btm) {
+        int len = Math.min((rt-lft) / ncols, (btm-tp) / nrows);
 
-        int left = (dim.width - ncols * len)/2;
-        int top = (dim.height - nrows * len)/2;
+        int left = lft+((rt-lft) - ncols * len)/2;
+        int top = tp+((btm-tp) - nrows * len)/2;
 
         for (int r = 0; r < nrows; ++r) {
             for (int c = 0; c < ncols; ++c) {
@@ -35,6 +35,8 @@ public class TetrisGrid {
             for (int j = 0; j < grid[i].length; ++j)
                 old[i][j] = grid[i][j];
         
+        int numCleared = 0;
+
         int target = nrows+3;
         for (int r = nrows+3; r >= 0; --r) {
             boolean filled = true;
@@ -45,8 +47,12 @@ public class TetrisGrid {
 
             if (!filled) {
                 --target;
+            } else {
+                ++numCleared;
             }
         }
+
+        panel.addScore(numCleared*100);
     }
 
     public boolean isTopRow(int r) {

@@ -20,8 +20,10 @@ public class BlockManager {
     }
 
     public void stopSpawning() {
-        mainLoopTimer.cancel();
-        mainLoopTimer.purge();
+        if (mainLoopTimer != null) {
+            mainLoopTimer.cancel();
+            mainLoopTimer.purge();
+        }
     }
 
     private void timeStep() {

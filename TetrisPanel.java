@@ -8,9 +8,7 @@ import java.awt.image.*;
 public class TetrisPanel extends JPanel {
 
     public TetrisPanel() {
-        grid = new TetrisGrid(this, 7, 4);
-        blockManager = new BlockManager(this, grid);
-        blockManager.startSpawning();
+        init();
     }
 
     public void paint(Graphics g) {
@@ -23,8 +21,12 @@ public class TetrisPanel extends JPanel {
 
     public void die() {
         System.out.println("I'm dead\n");
-        blockManager.stopSpawning();
-        grid = new TetrisGrid(this, 7, 4);
+        init();
+    }
+
+    private void init() {
+        if (blockManager != null) blockManager.stopSpawning();
+        grid = new TetrisGrid(this, 20, 7);
         blockManager = new BlockManager(this, grid);
         blockManager.startSpawning();
     }

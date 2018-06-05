@@ -20,7 +20,7 @@ public class TetrisPiece {
 
     public boolean canMoveDown() {
         System.out.printf("checking if can move downn\n");
-        for (int c = 0; c < 3; ++c) {
+        for (int c = 0; c < 4; ++c) {
             int r;
             for (r=3; r>=0; --r) if (piece[r][c]!=0) break;
             if (r!=-1) {

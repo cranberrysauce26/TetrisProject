@@ -74,9 +74,15 @@ public class TetrisPiece {
         undraw();
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-                if (piece[3-j][i]!=0 && !tgrid.empty(curRow+i, curCol+j)) {
-                    draw();
-                    return false;
+                if (piece[3-j][i]!=0) {
+                    if (!(0 <= curRow+i && curRow+i < tgrid.getRows() && 0 <= curCol+j  && curCol+j < tgrid.getCols())) {
+                        draw();
+                        return false;
+                    }
+                    if (!tgrid.empty(curRow+i, curCol+j)) {
+                        draw();
+                        return false;
+                    }
                 }
             }
         }

@@ -25,10 +25,10 @@ public class TetrisPanel extends JPanel {
     }
 
     private void init() {
-        if (blockManager != null) blockManager.stopSpawning();
+        if (pieceManager != null) pieceManager.stopSpawning();
         grid = new TetrisGrid(this, 20, 7);
-        blockManager = new BlockManager(this, grid);
-        blockManager.startSpawning();
+        pieceManager = new PieceManager(this, grid);
+        pieceManager.startSpawning();
     }
 
     private void updateImage() {
@@ -38,7 +38,7 @@ public class TetrisPanel extends JPanel {
     }
 
     private TetrisGrid grid;
-    private BlockManager blockManager;
+    private PieceManager pieceManager;
 
     private BufferedImage osi;
     private Graphics osg;

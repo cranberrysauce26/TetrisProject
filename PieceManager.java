@@ -2,9 +2,9 @@ import java.awt.Graphics;
 import java.util.TimerTask;
 import java.util.Timer;
 
-public class BlockManager {
+public class PieceManager {
 
-    public BlockManager(TetrisPanel p, TetrisGrid grid) {
+    public PieceManager(TetrisPanel p, TetrisGrid grid) {
         tgrid = grid;
         piece = null;
         tpanel = p;

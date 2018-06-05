@@ -74,14 +74,13 @@ public class TetrisGrid {
         return ncols;
     }
 
-    public int randomColour() {
-        Random rnd = new Random();
-        return 1+rnd.nextInt(cellColours.length-1);
-    }
-
     private TetrisPanel panel;
     private int[][] grid;
     private int nrows;
     private int ncols;
-    private static final Color[] cellColours = new Color[]{Color.BLACK, Color.BLUE, Color.RED, Color.YELLOW};
+    private static final Color[] cellColours = new Color[]{
+        Color.BLACK, Color.BLUE, Color.RED,
+        Color.YELLOW, Color.ORANGE, Color.GREEN,
+        Color.CYAN
+    };
 }

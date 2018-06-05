@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 public class TetrisPanel extends JPanel implements KeyListener {
 
     public TetrisPanel() {
-        System.out.printf("in tetris p cons\n");
         init();
         addKeyListener(this);
         setFocusable(true);
@@ -37,8 +36,6 @@ public class TetrisPanel extends JPanel implements KeyListener {
 			case KeyEvent.VK_UP:
                 pieceManager.rotateClockwise();
 				break;
-			case KeyEvent.VK_DOWN:
-				break;
 			case KeyEvent.VK_RIGHT:
                 pieceManager.moveRight();
 				break; 
@@ -47,8 +44,6 @@ public class TetrisPanel extends JPanel implements KeyListener {
 				break;
 			case KeyEvent.VK_SPACE:
                 pieceManager.fastForward();
-				break;
-			case KeyEvent.VK_PAGE_DOWN:
 				break;
 		}
 	}

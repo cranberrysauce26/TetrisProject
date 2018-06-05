@@ -7,7 +7,6 @@ import java.util.Random;
 public class TetrisGrid {
 
     public TetrisGrid(TetrisPanel p, int r, int c) {
-        System.out.printf("in tetris grid constructor with r = %d, c = %d\n", r, c);
         panel = p;
         nrows = r;
         ncols = c;
@@ -15,16 +14,17 @@ public class TetrisGrid {
     }
 
     public void display(Graphics g, Dimension dim) {
-        int width = dim.width / ncols;
-        int height = dim.height / nrows;
+        int len = Math.min(dim.width / ncols, dim.height / nrows);
+
+        int left = (dim.width - ncols * len)/2;
+        int top = (dim.height - nrows * len)/2;
 
         for (int r = 0; r < nrows; ++r) {
             for (int c = 0; c < ncols; ++c) {
                 g.setColor(cellColours[grid[r+4][c]]);
-                // g.setColor(cellColours[1]);
-                g.fillRect(c*width, r*height, width, height);
+                g.fillRect(left+c*len, top+r*len, len, len);
                 g.setColor(Color.white);
-                g.drawRect(c*width, r*height, width, height);
+                g.drawRect(left+c*len, top+r*len, len, len);
             }
         }
     }
@@ -58,7 +58,6 @@ public class TetrisGrid {
     }
 
     public void drawCell(int r, int c, int colour) {
-        // be careful with array indices
         grid[r][c] = colour;
     }
 

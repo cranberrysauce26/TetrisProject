@@ -26,12 +26,42 @@ public class PieceManager {
         }
     }
 
-    private void timeStep() {
+    public void moveLeft() {
+        if (piece==null) return;
+        if (piece.canMoveLeft()) {
+            piece.moveLeft();
+            tgrid.finalize();
+        }
+    }
+
+    public void moveRight() {
+        if (piece == null) return;
+        if (piece.canMoveRight()) {
+            piece.moveRight();
+            tgrid.finalize();
+        }
+    }
+
+    public void rotateClockwise() {
+        if (piece == null) return;
+        if (piece.canRotateClockwise()) {
+            piece.rotateClockwise();
+            tgrid.finalize();
+        }
+    }
+
+    public void fastForward() {
+        while (timeStep());
+    }
+
+    private boolean timeStep() {
+        boolean movedDown = false;
         if (piece == null) {
             piece = new TetrisPiece(tgrid);
         } else {
             if (piece.canMoveDown()) {
                 piece.moveDown();
+                movedDown = true;
             } else if (piece.occupiesTop()) {
                 tpanel.die();
             } else {
@@ -40,6 +70,7 @@ public class PieceManager {
             }
         }
         tgrid.finalize();
+        return movedDown;
     }
 
     private static final long updateInterval = 500;

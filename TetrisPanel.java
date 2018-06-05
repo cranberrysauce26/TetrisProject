@@ -1,14 +1,20 @@
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.event.*;
-import java.awt.image.*;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
-public class TetrisPanel extends JPanel {
+public class TetrisPanel extends JPanel implements KeyListener {
 
     public TetrisPanel() {
+        System.out.printf("in tetris p cons\n");
         init();
+        addKeyListener(this);
+        setFocusable(true);
+        requestFocusInWindow();
     }
 
     public void paint(Graphics g) {
@@ -23,6 +29,32 @@ public class TetrisPanel extends JPanel {
         System.out.println("I'm dead\n");
         init();
     }
+
+    // methods of KeyListener
+	public void keyPressed(KeyEvent ke) {
+		int code = ke.getKeyCode();
+		switch (code) {
+			case KeyEvent.VK_UP:
+                pieceManager.rotateClockwise();
+				break;
+			case KeyEvent.VK_DOWN:
+				break;
+			case KeyEvent.VK_RIGHT:
+                pieceManager.moveRight();
+				break; 
+			case KeyEvent.VK_LEFT:
+				pieceManager.moveLeft();
+				break;
+			case KeyEvent.VK_SPACE:
+                pieceManager.fastForward();
+				break;
+			case KeyEvent.VK_PAGE_DOWN:
+				break;
+		}
+	}
+
+	public void keyReleased(KeyEvent ke) {}
+    public void keyTyped(KeyEvent ke) {}
 
     private void init() {
         if (pieceManager != null) pieceManager.stopSpawning();

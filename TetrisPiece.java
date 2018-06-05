@@ -2,14 +2,12 @@ import java.util.Random;
 public class TetrisPiece {
 
     public TetrisPiece(TetrisGrid grid) {
-        System.out.printf("making a new tetris piece\n");
         tgrid = grid;
         initialize();
         draw();
     }
 
     public boolean occupiesTop() {
-        System.out.printf("checking occupies the top\n");
         for (int r = 0; r < 4; ++r) {
             for (int c = 0; c < 4; ++c) {
                 if (piece[r][c]!=0 && tgrid.isTopRow(curRow+r)) return true;
@@ -19,7 +17,6 @@ public class TetrisPiece {
     }
 
     public boolean canMoveDown() {
-        System.out.printf("checking if can move downn\n");
         for (int c = 0; c < 4; ++c) {
             int r;
             for (r=3; r>=0; --r) if (piece[r][c]!=0) break;
@@ -32,10 +29,59 @@ public class TetrisPiece {
     }
 
     public void moveDown() {
-        System.out.printf("moving down\n");
         undraw();
         ++curRow;
         draw();
+    }
+
+    public boolean canMoveLeft() {
+        for (int r = 0; r < 4; ++r) {
+            int c;
+            for (c=0; c<4; ++c) if (piece[r][c]!=0) break;
+            if (c!=4) {
+                if (curCol+c-1 < 0) return false;
+                if (!tgrid.empty(curRow+r, curCol+c-1)) return false;
+            }
+        }
+        return true;
+    }
+
+    public void moveLeft() {
+        undraw();
+        --curCol;
+        draw();
+    }
+
+    public boolean canMoveRight() {
+        for (int r = 0; r < 4; ++r) {
+            int c;
+            for (c=3; c>=0; --c) if (piece[r][c]!=0) break;
+            if (c!=-1) {
+                if (curCol+c+1 >= tgrid.getCols()) return false;
+                if (!tgrid.empty(curRow+r, curCol+c+1)) return false;
+            }
+        }
+        return true;
+    }
+
+    public void moveRight() {
+        undraw();
+        ++curCol;
+        draw();
+    }
+
+    public boolean canRotateClockwise() {
+        undraw();
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
+                if (piece[3-j][i]!=0 && !tgrid.empty(curRow+i, curCol+j)) {
+                    draw();
+                    return false;
+                }
+            }
+        }
+        draw();
+        return true;
     }
 
     public void rotateClockwise() {
@@ -45,7 +91,7 @@ public class TetrisPiece {
             for (int j = 0; j < 4; ++j) old[i][j] = piece[i][j];
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-               piece[i][j] = old[3-j][i]; 
+               piece[i][j] = old[3-j][i];
             }
         }
         draw();

@@ -42,7 +42,7 @@ public class TetrisGrid {
                 if (old[r][c]==0) filled = false;
                 grid[target][c] = old[r][c];
             }
-            
+
             if (!filled) {
                 --target;
             }

@@ -59,6 +59,7 @@ public class TetrisPanel extends JPanel implements KeyListener {
 
     private void init() {
         if (pieceManager != null) pieceManager.stopSpawning();
+        score = 0;
         grid = new TetrisGrid(this, 20, 7);
         pieceManager = new PieceManager(this, grid);
         pieceManager.startSpawning();

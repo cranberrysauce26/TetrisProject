@@ -237,7 +237,7 @@ public class TetrisPiece {
             };
         }
 
-        int rot = rnd.nextInt(3);
+        int rot = rnd.nextInt(4);
         while (rot-- != 0) rotateClockwise();
     }
     

@@ -132,6 +132,6 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
  2. On June 4, we fleshed out the template we made on May 29. By the end of June 4, the program was runnable but user controls had not been added yet.
  3. On June 5, we added keyboard controls and various other small updates. By the end of June 5, the game was playable.
  4. On June 7, we added comments to the code and updated the Readme.md.
- 5. On June 8, we fixed several mistakes we made in method `initialize` of class `TetrisPiece`. This is the current version.
+ 5. On June 8, we fixed several mistakes we made in method `initialize` of class `TetrisPiece` and added javadocs. This is the current version.
 
 For more information see the commit history here: https://github.com/cranberrysauce26/TetrisProject/commits/master

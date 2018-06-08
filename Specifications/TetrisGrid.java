@@ -1,9 +1,3 @@
-import javax.swing.JPanel;
-import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.util.Random;
-
 /**
  * @brief Provides a toolbox for the tetris grid
  * @details
@@ -14,7 +8,10 @@ import java.util.Random;
  * the top of the grid without worrying about collisions
  */
 public class TetrisGrid {
-
+/**
+ * This class provides methods for drawing to the tetris grid
+ */
+    
     /**
      * @brief TetrisGrid constructor
      * @details The constructor initializes grid to have an additional 4 rows for reasons explained above
@@ -24,10 +21,16 @@ public class TetrisGrid {
      * @param c The number of columns displayed to the screen
      */
     public TetrisGrid(TetrisPanel p, int r, int c) {
-        panel = p;
-        nrows = r;
-        ncols = c;
-        grid = new int[nrows+4][ncols];
+     /**
+     * The constructor of TetrisGrid
+     * p is the TetrisPanel
+     * r is the number of rows
+     * c is the number of cols
+     * 
+     * grid is the 2d array representing the tetris grid
+     * I set the number of rows to grid to be 4 + nrows to
+     * let a piece be drawn at the top without appearing on the screen
+     */
     }
 
     /**
@@ -41,49 +44,28 @@ public class TetrisGrid {
      * @param btm The bottom bound of the rectangle
      */
     public void display(Graphics g, int lft, int rt, int tp, int btm) {
-        int len = Math.min((rt-lft) / ncols, (btm-tp) / nrows);
-
-        int left = lft+((rt-lft) - ncols * len)/2;
-        int top = tp+((btm-tp) - nrows * len)/2;
-
-        for (int r = 0; r < nrows; ++r) {
-            for (int c = 0; c < ncols; ++c) {
-                g.setColor(cellColours[grid[r+4][c]]);
-                g.fillRect(left+c*len, top+r*len, len, len);
-                g.setColor(Color.white);
-                g.drawRect(left+c*len, top+r*len, len, len);
-            }
+		
+	/**
+     * This function displays the grid onto the screen
+     * lft, rt, tp, btm define the rectangular section of the panel to draw to
+     * lft is the left, rt it the right, btm is the bottom, and tp is the top of the rectangular section
+     * display centers the grid in the middle of the rectangular section and makes all cells square
+	 * Color is set as white
+     */
         }
     }
-
+	
     /**
      * @brief Clears all rows that are completely filled in the standard Tetris style
      * an adds the appropriate score to the TetrisPanel
      */
     public void clearFilledRows() {
-        int[][] old = new int[nrows+4][ncols];
-        for (int i = 0; i < grid.length; ++i)
-            for (int j = 0; j < grid[i].length; ++j)
-                old[i][j] = grid[i][j];
-        
-        int numCleared = 0;
-
-        int target = nrows+3;
-        for (int r = nrows+3; r >= 0; --r) {
-            boolean filled = true;
-            for (int c = 0; c < ncols; ++c) {
-                if (old[r][c]==0) filled = false;
-                grid[target][c] = old[r][c];
-            }
-
-            if (!filled) {
-                --target;
-            } else {
-                ++numCleared;
-            }
-        }
-
-        panel.addScore(numCleared*100);
+		
+     /**
+     * This function checks for rows that are completely filled and clears them
+     * It does not draw to the screen. 100 points are added to the integer score.
+     */
+	 
     }
 
     /**
@@ -94,7 +76,10 @@ public class TetrisGrid {
      * @return Whether row r is the top row that is drawn to the screen
      */
     public boolean isTopRow(int r) {
-        return r == 4;
+	/**
+     * This function returns true if row r is the top row that is drawn to the screen
+     * Since there are 4 extra rows that are not drawn to the screen, the top row is row 4
+     */
     }
 
     /**
@@ -106,42 +91,49 @@ public class TetrisGrid {
      * @return Whether the cell in row r and column c is empty
      */
     public boolean empty(int r, int c) {
-        return grid[r][c] == 0;
-    }
-
-    /**
-     * @brief Fills the cell at row r and column c with colour cellColours[colour]
-     * 
-     * @param r The row to update
-     * @param c The column to update
-     * @param colour The index of the colour in the array cellColours
+     /**
+     * Returns true if the cell at row r and column c in the grid is empty
+     * Note that r is the row in the 2d array grid, not r in the grid displayed on the screen
+     * So for example, if r = 0, then row 0 is not a row displayed in the screen
      */
-    public void drawCell(int r, int c, int colour) {
-        grid[r][c] = colour;
     }
 
+    public void drawCell(int r, int c, int colour) {
+        /**
+     * Draws the cell at row r and column c with colour
+     */
+    }
+    
     /**
      * @brief Draws the grid to the screen
      * @details This method must be called after updates in order for the changes to be displayed on screen
      */
     public void finalize() {
-        panel.repaint();
+        /**
+     * This function is the public method used in order to draw changes from TetrisGrid onto the screen
+     * It calls panel.repaint() which in turn will call the method display
+     */
     }
-   
+    
     /**
      * @return Returns the number of rows in the grid.
      * This is the number of rows visible to the user plus 4
      */
     public int getRows() {
-        return nrows+4;
-    }
-
+/**
+     * Returns the total number of rows in the grid
+     * Note that this is 4 more than the number of rows displayed on the screen
+     */    
+	}
+    
     /**
      * @return The total number of columns
      */
     public int getCols() {
-        return ncols;
-    }
+	/**
+     * Returns the total number of columns
+     */    
+	 }
 
     // The TetrisPanel to draw to
     private TetrisPanel panel;
@@ -155,8 +147,6 @@ public class TetrisGrid {
     private int ncols;
     // The colours that can be drawn to the grid
     private static final Color[] cellColours = new Color[]{
-        Color.BLACK, Color.BLUE, Color.RED,
-        Color.YELLOW, Color.ORANGE, Color.GREEN,
-        Color.CYAN, Color.MAGENTA
+        //Array of 8 available colours for the cells
     };
 }

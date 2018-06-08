@@ -36,7 +36,7 @@ public class TetrisPiece {
     }
 
     /**
-     * @bried Returns whether the piece can move down
+     * @brief Returns whether the piece can move down
      * @details
      * It works by finding the lowest row that is non empty in each of the 4 columns
      * and checking if the row below that in the grid is empty
@@ -64,7 +64,7 @@ public class TetrisPiece {
     }
 
     /**
-     * @bried Returns whether the piece can move left
+     * @brief Returns whether the piece can move left
      * @details
      * It works by looping through each row, finding the leftmost occupied column,
      * and checking if the cell to the left in grid is occupied
@@ -92,7 +92,7 @@ public class TetrisPiece {
     }
 
     /**
-     * @bried Returns whether the piece can move left
+     * @brief Returns whether the piece can move left
      * @details
      * It works by looping through each row, finding the rightmost occupied column,
      * and checking if the cell to the right in grid is occupied
@@ -120,7 +120,7 @@ public class TetrisPiece {
     }
 
     /**
-     * @bried Returns whether the piece can rotate clockwise
+     * @brief Returns whether the piece can rotate clockwise
      * @details
      * It works by noting that the i'th row and the j'th column of the rotated piece
      * is just the 3-j 'th row and i'th column of the current piece

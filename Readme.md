@@ -2,11 +2,11 @@
 
 ## Description of the Program
 
-The goal of the project is to program a Tetris simulator. Tetris is a tile matching board game originally designed by Russian developer Alexey Pajitnov and released in 1984. The project requires a board with an 11 by 24 grid of empty tiles.
+The goal of the project is to program a Tetris simulator. Tetris is a tile matching board game originally designed by Russian developer Alexey Pajitnov and released in 1984. The project requires a board with an r by c grid of empty tiles, where r and c can be specified by the user.
 
 In the program there are 7 Tetris pieces composed of four tiles in different 2D geometric configurations. A piece is randomly selected by the computer and appears on the top of the board. The user must be able to manipulate the piece – move the piece horizontally and rotate it clockwise – with the keyboard. The active peace gradually moves down the board at a constant velocity; when it reaches the bottom of the board or another inactive piece it becomes inactive. Afterwards a new active piece is spawned from the centre top of the board.
 
-The objective of Tetris is to survive and gain points. 100 points are awarded whenever an entire row in the grid is filled with inactive blocks. In that case the 11 blocks in the horizontal row are removed to provide additional space, and all blocks above the row are shifted 1 downwards. The game must end when a landed block reaches the top of the grid. In that case the player’s score is finalized and vividly displayed.
+The objective of Tetris is to survive and gain points. 100 points are awarded whenever an entire row in the grid is filled with inactive blocks. In that case the c blocks in the horizontal row are removed to provide additional space, and all blocks above the row are shifted 1 downwards. The game must end when a landed block reaches the top of the grid. In that case the player’s score is finalized and vividly displayed.
 
 ## Analysis of the Program
 
@@ -125,3 +125,12 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
 5. In `TetrisPanel`, we mapped keys to functions in `PieceManager`. For example, if the left arrow is pressed, then the method `moveLeft()` in `PieceManager`is called.
 
 6. Then, in `PieceManager`, the corresponding method in `TetrisPiece` is called. The `TetrisPiece` methods update the `TetrisGrid` instance accordingly, and then the method `finalize()` in `TetrisGrid` is called by `PieceManager`. This `finalize()` method draws the changes to the screen by calling the `repaint()` method of `TetrisPanel`. This in turn will call method `updateImage` in `TetrisPanel`, which will call method `display` in `TetrisGrid`. The `display` method draws the grid onto the screen.
+
+## Development Timeline
+
+ 1. We made our initial version on May 29. It contained skeleton code for `Main`, `TetrisPiece`, `TetrisGrid`, `BlockManager`, and `TetrisPanel`. We later renamed `BlockManager` to `PieceManager`.
+ 2. On June 4, we fleshed out the template we made on May 29. By the end of June 4, the program was runnable but user controls had not been added yet.
+ 3. On June 5, we added keyboard controls and various other small updates. By the end of June 5, the game was playable.
+ 4. On June 7, we added comments to the code and updated the Readme.md. This is the current version of the game.
+
+For more information see the commit history here: https://github.com/cranberrysauce26/TetrisProject/commits/master

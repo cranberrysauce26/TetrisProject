@@ -131,6 +131,7 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
  1. We made our initial version on May 29. It contained skeleton code for `Main`, `TetrisPiece`, `TetrisGrid`, `BlockManager`, and `TetrisPanel`. We later renamed `BlockManager` to `PieceManager`.
  2. On June 4, we fleshed out the template we made on May 29. By the end of June 4, the program was runnable but user controls had not been added yet.
  3. On June 5, we added keyboard controls and various other small updates. By the end of June 5, the game was playable.
- 4. On June 7, we added comments to the code and updated the Readme.md. This is the current version of the game.
+ 4. On June 7, we added comments to the code and updated the Readme.md.
+ 5. On June 8, we fixed a mistake we made by forgetting one type of tetris piece. This is the current version.
 
 For more information see the commit history here: https://github.com/cranberrysauce26/TetrisProject/commits/master

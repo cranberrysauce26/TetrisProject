@@ -18,7 +18,7 @@ public class Main {
         frame.add(new TetrisPanel(nrows, ncols));
         frame.setSize(600, 800);
         frame.setLocation(10, 100);
-        frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }

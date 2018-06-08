@@ -22,10 +22,10 @@ public class TetrisPanel extends JPanel implements KeyListener {
     public TetrisPanel(int r, int c) {
         nrows = r;
         ncols = c;
-        init();
         addKeyListener(this);
         setFocusable(true);
         requestFocusInWindow();
+        init();
     }
 
     /**

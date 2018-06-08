@@ -3,16 +3,20 @@ import java.util.TimerTask;
 import java.util.Timer;
 
 /**
- * The purpose of PieceManager is to provide a wrapper around TetrisPiece
- * It handles updates a regular intervals using a Timer and
- * provides methods for TetrisPanel that rotate or move the tetris piece
+ * @brief Provides a wrapper around TetrisPiece
+ * @details 
+ * PieceManager uses the toolkit provided by TetrisPiece to perform game logic.
+ * It handles regularly spawning and moving pieces down, and handling user commands
+ * to rotate, shift, or fast forward
  */
 public class PieceManager {
 
     /**
-     * The constructor for PieceManager
-     * It is passed p, the current TetrisPanel and grid, the current TetrisGrid
-     * It initializes the TetrisPiece as null
+     * @brief PieceManager constructor
+     * @details The construtor initializes piece as null
+     * 
+     * @param p The tetris panel
+     * @param grid the tetris grid
      */
     public PieceManager(TetrisPanel p, TetrisGrid grid) {
         tgrid = grid;
@@ -21,7 +25,8 @@ public class PieceManager {
     }
 
     /**
-     * This function starts the game
+     * @brief Starts running the game
+     * @details It creates a timer task and calls it at regular intervals
      */
     public void startSpawning() {
         TimerTask mainLoopTask = new TimerTask() {
@@ -35,6 +40,10 @@ public class PieceManager {
     /**
      * This function stops the game
      */
+    /**
+     * @brief Stops the game
+     * @details If the mainLoopTimer is initialized, it cancels it and purges it
+     */
     public void stopSpawning() {
         if (mainLoopTimer != null) {
             mainLoopTimer.cancel();
@@ -42,9 +51,9 @@ public class PieceManager {
         }
     }
 
-    /**
-     * This function moves the piece left if possible
-     */
+   /**
+    * @brief Moves the piece left if possible
+    */
     public void moveLeft() {
         if (piece==null) return;
         if (piece.canMoveLeft()) {
@@ -54,7 +63,7 @@ public class PieceManager {
     }
 
     /**
-     * This function moves the piece right if possible
+     * @brief Moves the piece right if possible
      */
     public void moveRight() {
         if (piece == null) return;
@@ -64,9 +73,9 @@ public class PieceManager {
         }
     }
 
-    /**
-     * This function rotates the piece clockwise if possible
-     */
+   /**
+    * @brief Rotates the piece clockwise if possible
+    */
     public void rotateClockwise() {
         if (piece == null) return;
         if (piece.canRotateClockwise()) {
@@ -76,22 +85,21 @@ public class PieceManager {
     }
 
     /**
-     * This function moves the piece down until it cannot go down anymore
+     * @brief Fast forwards the game until the current piece has gone as far down as possible
      */
     public void fastForward() {
         while (timeStep());
     }
 
     /**
-     * This is the main function of PieceManager
-     * First it constructs the piece if the piece is null
-     * Then if the piece can move down, it moves the piece down
-     * Otherwise if the piece is in the top row, it call tpanel.die
-     * Otherwise, it draws the grid and creates a new piece
-     * 
-     * Finally, the function calls tgrid.finalize, which draws the results to the screen
-     * 
-     * The function returns true if the piece moved down and false otherwise
+     * @brief Moves forward one step in time
+     * @details 
+     * If the piece is null, it creates a new TetrisPiece initialized with the grid
+     * If the piece can move down, it moves the piece down
+     * Else if the piece is in the top row, it tells tpanel to die
+     * Else it tells the grid to clear filled rows and create a new piece
+     * Finally tgrid.finalize() is called, which draws the results to the screen
+     * @return whether or not the piece was moved down a step
      */
     private boolean timeStep() {
         boolean movedDown = false;
@@ -112,10 +120,14 @@ public class PieceManager {
         return movedDown;
     }
 
+    // The time in milliseconds between consecutive time steps
     private static final long updateInterval = 500;
-
+    // The tetris grid
     private TetrisGrid tgrid;
+    // The tetris piece
     private TetrisPiece piece;
+    // The tetris panel
     private TetrisPanel tpanel;
+    // The main timer
     private Timer mainLoopTimer = new Timer();
 }

@@ -1,12 +1,15 @@
 import java.util.Random;
+
 /**
- * Class tetrisPiece handles all methods related to moving and drawing a tetris pieces
+ * @brief TetrisPiece handles all methods related to moving and drawing a tetris piece
  */
 public class TetrisPiece {
 
     /**
-     * TetrisPiece takes TetrisGrid grid as a parameter
-     * It calls initialize, which randomly generates a piece
+     * @brief TetrisPiece constructor
+     * @details It generates a random tetris piece and places it at the top of the grid
+     * 
+     * @param grid The TetrisGrid to draw to
      */
     public TetrisPiece(TetrisGrid grid) {
         tgrid = grid;
@@ -18,6 +21,11 @@ public class TetrisPiece {
      * This function returns true if the piece occupies the top drawable row of the grid
      * This function is used to check whether the game should end 
      */
+    /**
+     * @brief Returns whether the piece occupies the top drawable row in tgrid
+     * This function is used to check whether the game should end
+     * @return Whether the piece occupies the top drawable row in tgrid
+     */
     public boolean occupiesTop() {
         for (int r = 0; r < 4; ++r) {
             for (int c = 0; c < 4; ++c) {
@@ -28,9 +36,11 @@ public class TetrisPiece {
     }
 
     /**
-     * Returns true if the piece can move down
+     * @bried Returns whether the piece can move down
+     * @details
      * It works by finding the lowest row that is non empty in each of the 4 columns
-     * and checking if the row below that in the grid is empty 
+     * and checking if the row below that in the grid is empty
+     * @return Returns whether the piece can move down
      */
     public boolean canMoveDown() {
         for (int c = 0; c < 4; ++c) {
@@ -45,10 +55,7 @@ public class TetrisPiece {
     }
 
     /**
-     * This function moves the piece down
-     * First it undraws the current piece
-     * Then it updates curRow
-     * Then it draws the piece at the new position
+     * @brief Moves the piece down and draws to the grid
      */
     public void moveDown() {
         undraw();
@@ -57,9 +64,11 @@ public class TetrisPiece {
     }
 
     /**
-     * This function checks whether the piece can move left
-     * It works by looping through each row, finding the leftmost column,
-     * and checking if the cell to the left is occupied
+     * @bried Returns whether the piece can move left
+     * @details
+     * It works by looping through each row, finding the leftmost occupied column,
+     * and checking if the cell to the left in grid is occupied
+     * @return Returns whether the piece can move left
      */
     public boolean canMoveLeft() {
         for (int r = 0; r < 4; ++r) {
@@ -74,7 +83,7 @@ public class TetrisPiece {
     }
 
     /**
-     * This function moves the piece left
+     * @brief Moves the piece left and draws to the grid
      */
     public void moveLeft() {
         undraw();
@@ -83,8 +92,11 @@ public class TetrisPiece {
     }
 
     /**
-     * This function checks if the piece can move right
-     * It is almost identical to canMoveLeft
+     * @bried Returns whether the piece can move left
+     * @details
+     * It works by looping through each row, finding the rightmost occupied column,
+     * and checking if the cell to the right in grid is occupied
+     * @return Returns whether the piece can move right
      */
     public boolean canMoveRight() {
         for (int r = 0; r < 4; ++r) {
@@ -98,8 +110,8 @@ public class TetrisPiece {
         return true;
     }
 
-    /**
-     * This function moves the piece right
+   /**
+     * @brief Moves the piece right and draws to the grid
      */
     public void moveRight() {
         undraw();
@@ -108,9 +120,11 @@ public class TetrisPiece {
     }
 
     /**
-     * This function checks if the piece can be rotated clockwise
+     * @bried Returns whether the piece can rotate clockwise
+     * @details
      * It works by noting that the i'th row and the j'th column of the rotated piece
      * is just the 3-j 'th row and i'th column of the current piece
+     * @return Returns whether the piece can rotate clockwise
      */
     public boolean canRotateClockwise() {
         undraw();
@@ -132,8 +146,9 @@ public class TetrisPiece {
         return true;
     }
 
-    /**
-     * This function rotates the piece clockwise using the observation that
+     /**
+     * @brief Rotates the piece clockwise and draws to the grid
+     * @details This function rotates the piece clockwise using the observation that
      * the i'th row and the j'th column of the rotated piece
      * is just the 3-j 'th row and i'th column of the current piece
      */
@@ -151,7 +166,7 @@ public class TetrisPiece {
     }
 
     /**
-     * This function undraws all occupied cells in the piece from the grid
+     * @brief Clears all occupied cells in the piece from the grid
      */
     private void undraw() {
         for (int r = 0; r < 4; ++r) {
@@ -162,7 +177,7 @@ public class TetrisPiece {
     }
 
     /**
-     * This function draws all occupied cells in the piece to the grid
+     * @brief Draws all occupied cells in the piece to the grid
      */
     private void draw() {
         for (int r = 0; r < 4; ++r) {
@@ -173,8 +188,13 @@ public class TetrisPiece {
     }
 
     /**
-     * This function randomly generates a piece and rotates
-     * it a random number of times in [0, 3]
+     * @brief Randomly generates a piece and gives the piece a
+     * random rotation
+     * @description
+     * There are 7 different types of tetris pieces. This method generates a random integer
+     * c in the range [1, 7] that identifies the type of tetris piece. The variable c is also used
+     * as the colour index for TetrisGrid to draw. Finally, it generates a random integer rot in [0, 3]
+     * and rotates clockwise rot times.
      */
     private void initialize() {
 

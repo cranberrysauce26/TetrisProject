@@ -180,8 +180,8 @@ public class TetrisPiece {
 
         Random rnd = new Random();
 
-        // c is a random integer in the interval [1, 6]
-        int c = rnd.nextInt(6)+1;
+        // c is a random integer in the interval [1, 7]
+        int c = rnd.nextInt(7)+1;
 
         curRow = 0;
         curCol = rnd.nextInt(tgrid.getCols()-3);
@@ -194,39 +194,46 @@ public class TetrisPiece {
                 {0, 0, 0, 0}
             };
         } else if (c==2) {
-             piece = new int[][] {
+            piece = new int[][] {
                 {0, 0, 0, 0},
                 {0, 0, c, 0},
                 {c, c, c, 0},
                 {0, 0, 0, 0}
             };
         } else if (c==3) {
-             piece = new int[][] {
+            piece = new int[][] {
                 {0, 0, 0, 0},
                 {0, c, 0, 0},
                 {c, c, c, 0},
                 {0, 0, 0, 0}
             };
         } else if (c==4) {
-             piece = new int[][] {
+            piece = new int[][] {
                 {0, 0, 0, 0},
                 {0, c, c, 0},
                 {c, c, 0, 0},
                 {0, 0, 0, 0}
             };
         } else if (c == 5) {
-             piece = new int[][] {
+            piece = new int[][] {
                 {0, 0, 0, 0},
                 {0, c, c, 0},
                 {0, c, c, 0},
                 {0, 0, 0, 0}
             };
-        } else {
+        } else if (c==6) {
             piece = new int[][] {
                 {0, 0, 0, 0},
                 {0, c, c, 0},
+                {0, 0, c, c},
+                {0, 0, 0, 0}
+            };
+        } else {
+            piece = new int[][] {
+                {0, 0, 0, 0},
                 {0, c, 0, 0},
-                {0, c, 0, 0}
+                {0, c, c, c},
+                {0, 0, 0, 0}
             };
         }
 

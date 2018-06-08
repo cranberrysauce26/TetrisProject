@@ -133,6 +133,6 @@ public class TetrisGrid {
     private static final Color[] cellColours = new Color[]{
         Color.BLACK, Color.BLUE, Color.RED,
         Color.YELLOW, Color.ORANGE, Color.GREEN,
-        Color.CYAN
+        Color.CYAN, Color.MAGENTA
     };
 }

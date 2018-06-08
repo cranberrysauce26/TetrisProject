@@ -45,6 +45,7 @@ public class TetrisPanel extends JPanel implements KeyListener {
      * It calls init, which restarts the game
      */
     public void die() {
+        System.out.printf("You scored %d. Starting a new game\n", score);
         init();
     }
 

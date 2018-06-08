@@ -19,7 +19,7 @@ There are a total of 4 classes.
  4. Class `TetrisPiece` represents a single tetris block, and provides methods like `moveLeft` or `rotateClockwise`. It has an instance of `TetrisGrid` so it handles drawing itself to the grid. Internally, `TetrisPiece` represents each piece as a 4x4 array.
  5. Class `PieceManager` is a wrapper around class `TetrisPiece`. It deals with the basic logic of the piece, like spawning a piece, or moving it down at regular intervals. It depends on the interface of `TetrisPiece` but not its implementation.
 
-The order of execution of the program is as follows:
+#### Order of execution
 
 1.	In the main function of class `Main`, the user enters the number of rows and columns of the tetris grid. Then we create a new `JFrame`, set basic properties like title, size and location, and add a new `TetrisPanel` , which inherits from `JPanel`, instance to the frame. We pass the number of rows and columns into the TetrisPanel constructor. Finally, we set the frame as visible.
     

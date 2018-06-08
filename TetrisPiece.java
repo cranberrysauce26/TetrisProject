@@ -232,7 +232,8 @@ public class TetrisPiece {
         while (rot-- != 0) rotateClockwise();
     }
 
-    private int curRow, curCol;
+    private int curRow;
+    private int curCol;
     private TetrisGrid tgrid;
     private int[][] piece;
 }

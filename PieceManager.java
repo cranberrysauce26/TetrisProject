@@ -29,7 +29,7 @@ public class PieceManager {
                 timeStep();
             }
         };
-        mainLoopTimer.scheduleAtFixedRate(mainLoopTask, updateDelay, updateInterval);
+        mainLoopTimer.scheduleAtFixedRate(mainLoopTask, 0, updateInterval);
     }
 
     /**
@@ -113,7 +113,6 @@ public class PieceManager {
     }
 
     private static final long updateInterval = 500;
-    private static final long updateDelay = 0;
 
     private TetrisGrid tgrid;
     private TetrisPiece piece;

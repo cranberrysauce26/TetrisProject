@@ -179,6 +179,8 @@ public class TetrisPiece {
     private void initialize() {
 
         Random rnd = new Random();
+
+        // c is a random integer in the interval [1, 6]
         int c = rnd.nextInt(6)+1;
 
         curRow = 0;
@@ -231,9 +233,17 @@ public class TetrisPiece {
         int rot = rnd.nextInt(3);
         while (rot-- != 0) rotateClockwise();
     }
-
+    
+    // curRow is the row that the top of our 4x4 array is on in the grid
     private int curRow;
+
+    // curCol is the column that the left of our 4x4 array is on in the grid
     private int curCol;
+
+    // tgrid is the TetrisGrid that our TetrisPiece will draw to
     private TetrisGrid tgrid;
+
+    // piece is a 4x4 array that represents the tetris piece
+    // The nonzero cells store the colour to be drawn onto the grid
     private int[][] piece;
 }

@@ -16,9 +16,9 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
 
 2. Class `TetrisPanel` inherits from `JPanel` and handles painting to the screen, scorekeeping, and keyboard events.
 
-3. Class `TetrisGrid` represents the game's grid. It does not deal with any game logic directly. It simply provides an interface for the grid that other classes can later use. For example, it has a method to draw a cell a certain colour.
+3. Class `TetrisGrid` represents the game's grid. It does not deal with any game logic directly. It simply provides an interface for the grid that other classes can later use. It allows other classes to change the colour of a cell using `drawCell(int r, int c, int colour)` for example, or check if a cell is empty using `empty(int r, int c)`. An important point about `TetrisGrid` is that it does not draw the grid to the screen unless the method `finalize()` is called. This provides performance improvements for tasks requiring multiple updates.
 
-4. Class `TetrisPiece` represents a single tetris block, and provides methods like `moveLeft` or `rotateClockwise`. It has an instance of `TetrisGrid` so it handles drawing itself to the grid. Internally, `TetrisPiece` represents each piece as a 4x4 array.
+4. Class `TetrisPiece` represents a single tetris block, and provides methods like `canMoveLeft`, `moveLeft`, and `rotateClockwise`. It stores an instance of `TetrisGrid` so it handles drawing itself to the grid. Internally, `TetrisPiece` represents each piece as a 4x4 array called `piece`. It stores integers `curRow` and `curCol` which represent its position in the grid (specifically, the row and column of the top-left cell in the grid).
 
 5. Class `PieceManager` is a wrapper around class `TetrisPiece`. It deals with the basic logic of the piece, like spawning a piece, or moving it down at regular intervals. It depends on the interface of `TetrisPiece` but not its implementation. `PieceManager` is not strictly necessary. We could have put all the code for `PieceManager` in `TetrisPiece` for example. However, we prefer to think of `TetrisPiece` as a toolbox that `PieceManager` can use to perform game logic, similar to how `TetrisGrid` is a toolbox for `TetrisPiece` to draw to.
 

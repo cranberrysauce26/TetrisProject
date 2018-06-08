@@ -126,8 +126,16 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
 
 6. Then, in `PieceManager`, the corresponding method in `TetrisPiece` is called. The `TetrisPiece` methods update the `TetrisGrid` instance accordingly, and then the method `finalize()` in `TetrisGrid` is called by `PieceManager`. This `finalize()` method draws the changes to the screen by calling the `repaint()` method of `TetrisPanel`. This in turn will call method `updateImage` in `TetrisPanel`, which will call method `display` in `TetrisGrid`. The `display` method draws the grid onto the screen.
 
-## Development Timeline
+## Extensions
 
+Our proposed extension provided more time on the project is two player - cooperation Tetris. Cooperation Tetris would function with the same goals and rules as regular Tetris - four tile pieces and clearing rows for points. The suggested board size for two player Tetris is also inputted by the user but is recommended to be larger than regular Tetris.
+
+The major difference in cooperation Tetris is there are three active pieces moving downwards on the board at all time rather than a single active piece in regular Tetris. The 3 pieces requires adding code in Piece Manager with piece A B and C respectively having their own classes and instance fields in PieceManagerA PieceManagerB and PieceManagerC. In addition, the startspawning function must spawn pieces A B and C at locations near ¼, ½ and ¾ on the X axis of the board instead of our current spawner at ½ (the middle top of the board).
+
+Keyboard listener for both players will be able accomplish moveleft(), moveright(), rotateclockwise() with keys “left” “right” “up” and “A” “D” “W” respectively for the two players. However Keyboard Listener must allow function shiftpiece(). Shiftpiece()allows the player that runs the command to shift the piece they are currently manipulating on the board. We can allow PieceManager to manage its own keyboard events to allow for easier extension.
+
+## Development Timeline
+TetrisPiece
  1. We made our initial version on May 29. It contained skeleton code for `Main`, `TetrisPiece`, `TetrisGrid`, `BlockManager`, and `TetrisPanel`. We later renamed `BlockManager` to `PieceManager`.
  2. On June 4, we fleshed out the template we made on May 29. By the end of June 4, the program was runnable but user controls had not been added yet.
  3. On June 5, we added keyboard controls and various other small updates. By the end of June 5, the game was playable.

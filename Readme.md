@@ -14,7 +14,7 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
 
 1. Class `Main` is the entry point of the program.
 
-2. Class `TetrisPanel` inherits from `JPanel` and handles painting to the screen, scorekeeping, and keyboard events.
+2. Class `TetrisPanel` inherits from `JPanel` and handles painting to the screen, scorekeeping, and keyboard events. It uses the standard off screen graphics optimization discussed in class.
 
 3. Class `TetrisGrid` represents the game's grid. It does not deal with any game logic directly. It simply provides an interface for the grid that other classes can later use. It allows other classes to change the colour of a cell using `drawCell(int r, int c, int colour)` for example, or check if a cell is empty using `empty(int r, int c)`. An important point about `TetrisGrid` is that it does not draw the grid to the screen unless the method `finalize()` is called. This provides performance improvements for tasks requiring multiple updates.
 

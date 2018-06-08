@@ -20,7 +20,7 @@ The objective of Tetris is to survive and gain points. 100 points are awarded wh
 
 4. Class `TetrisPiece` represents a single tetris block, and provides methods like `moveLeft` or `rotateClockwise`. It has an instance of `TetrisGrid` so it handles drawing itself to the grid. Internally, `TetrisPiece` represents each piece as a 4x4 array.
 
-5. Class `PieceManager` is a wrapper around class `TetrisPiece`. It deals with the basic logic of the piece, like spawning a piece, or moving it down at regular intervals. It depends on the interface of `TetrisPiece` but not its implementation.
+5. Class `PieceManager` is a wrapper around class `TetrisPiece`. It deals with the basic logic of the piece, like spawning a piece, or moving it down at regular intervals. It depends on the interface of `TetrisPiece` but not its implementation. `PieceManager` is not strictly necessary. We could have put all the code for `PieceManager` in `TetrisPiece` for example. However, we prefer to think of `TetrisPiece` as a toolbox that `PieceManager` can use to perform game logic, similar to how `TetrisGrid` is a toolbox for `TetrisPiece` to draw to.
 
 #### Description of classes
 

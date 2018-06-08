@@ -190,7 +190,7 @@ public class TetrisPiece {
     /**
      * @brief Randomly generates a piece and gives the piece a
      * random rotation
-     * @description
+     * @details
      * There are 7 different types of tetris pieces. This method generates a random integer
      * c in the range [1, 7] that identifies the type of tetris piece. The variable c is also used
      * as the colour index for TetrisGrid to draw. Finally, it generates a random integer rot in [0, 3]
